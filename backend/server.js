@@ -4,13 +4,14 @@ import connectMongoDB from './db/connectMongoDB.js';
 import cookieParser from "cookie-parser";
 import authRoute from "./routes/authRoute.js";
 import cors from 'cors';
-import {join} from 'path';
+import {join,dirname} from 'path';
 
 
 
 dotenv.config();
 
 const app = express();
+const __dirname = dirname();
 const PORT = process.env.PORT || 6060;
 
 app.use(express.json());
