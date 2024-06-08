@@ -4,7 +4,7 @@ import connectMongoDB from './db/connectMongoDB.js';
 import cookieParser from "cookie-parser";
 import authRoute from "./routes/authRoute.js";
 import cors from 'cors';
-import path from 'path';
+import {join} from 'path';
 
 
 
@@ -23,10 +23,10 @@ app.use(cors({
 
 app.use(cookieParser());
 
-app.use(express.static(path.join(__dirname,'/frontend/build')));
-app.get('*', function(req,res){
-    res.sendFile(path.join(__dirname,'/frontend/build/indec.html'))
-})
+app.use(express.static(join(__dirname,'/frontend/build')));
+app.get('*', (req,res) =>{
+    res.sendFile(join(__dirname,'/frontend/build','index.html'));
+});
 
 
 app.use("/api/auth",authRoute);
