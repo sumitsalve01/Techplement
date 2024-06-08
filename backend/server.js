@@ -4,14 +4,13 @@ import connectMongoDB from './db/connectMongoDB.js';
 import cookieParser from "cookie-parser";
 import authRoute from "./routes/authRoute.js";
 import cors from 'cors';
-import {join,dirname} from 'path';
+import path from 'path';
 
 
 
 dotenv.config();
 
 const app = express();
-const __dirname = dirname();
 const PORT = process.env.PORT || 6060;
 
 app.use(express.json());
@@ -24,9 +23,9 @@ app.use(cors({
 
 app.use(cookieParser());
 
-app.use(express.static(join(__dirname,'/frontend/build')));
+app.use(express.static(path.join(__dirname,'/frontend/build')));
 app.get('*', (req,res) =>{
-    res.sendFile(join(__dirname,'/frontend/build','index.html'));
+    res.sendFile(path.join(__dirname+'frontend/build/index.html'));
 });
 
 
